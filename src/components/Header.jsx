@@ -67,7 +67,7 @@ const Header = ({ handleModalOpen }) => {
     <div className={`header-bottom ${isSticky ? "sticky" : ""}`}>
      <div className="inner">
       <div className="logo">
-       <a href="index.html">
+       <a href="/">
         <img src="images/common/header-logo.svg" alt="삼성화재 로고" />
        </a>
       </div>
