@@ -1,87 +1,70 @@
+import { useState } from "react";
 import "../styles/footer/footer.css";
 
+const footerMenus = [
+ {
+  label: "소비자보호",
+  submenu: [
+   "휴면보험금 출연 안내",
+   "자동차 간접손해보험금 안내",
+   "과납보험료 환급신청",
+   "서민금융 1332",
+   "자동차리콜센터",
+   "신용정보활용체제공시",
+   "전자금융거래 유의사항",
+   "이메일 무단수집 거부",
+  ],
+ },
+ {
+  label: "신고센터",
+  submenu: ["Comming Soon"],
+ },
+ {
+  label: "해외법인",
+  submenu: ["Comming Soon"],
+ },
+ {
+  label: "패밀리사이트",
+  submenu: ["Comming Soon"],
+ },
+ {
+  label: "삼성화재 SNS",
+  submenu: ["Comming Soon"],
+ },
+];
+
 const Footer = () => {
+ // 마우스 오버 상태 관리 (true/false)
+ const [showAllSubmenus, setShowAllSubmenus] = useState(false);
+
  return (
   <footer className="footer">
    <div className="footer-top">
     <div className="inner">
-     <ul>
-      <li>
-       <a href="#">
-        <span>소비자보호</span>
-        <img src="images/common/ico-common-fold-arr.svg" alt="소비자보호" />
-       </a>
-       <ul className="submenu">
-        <li>
-         <a href="#">휴면보험금 출연 안내</a>
-        </li>
-        <li>
-         <a href="#">자동차 간접손해보험금 안내</a>
-        </li>
-        <li>
-         <a href="#">과납보험료 환급신청</a>
-        </li>
-        <li>
-         <a href="#">서민금융 1332</a>
-        </li>
-        <li>
-         <a href="#">자동차리콜센터</a>
-        </li>
-        <li>
-         <a href="#">신용정보활용체제공시</a>
-        </li>
-        <li>
-         <a href="#">전자금융거래 유의사항</a>
-        </li>
-        <li>
-         <a href="#">이메일 무단수집 거부</a>
-        </li>
-       </ul>
-      </li>
-      <li>
-       <a href="#">
-        <span>신고센터</span>
-        <img src="images/common/ico-common-fold-arr.svg" alt="신고센터" />
-       </a>
-       <ul className="submenu">
-        <li>
-         <a href="#">Comming Soon</a>
-        </li>
-       </ul>
-      </li>
-      <li>
-       <a href="#">
-        <span>해외법인</span>
-        <img src="images/common/ico-common-fold-arr.svg" alt="해외법인" />
-       </a>
-       <ul className="submenu">
-        <li>
-         <a href="#">Comming Soon</a>
-        </li>
-       </ul>
-      </li>
-      <li>
-       <a href="#">
-        <span>패밀리사이트</span>
-        <img src="images/common/ico-common-fold-arr.svg" alt="패밀리사이트" />
-       </a>
-       <ul className="submenu">
-        <li>
-         <a href="#">Comming Soon</a>
-        </li>
-       </ul>
-      </li>
-      <li>
-       <a href="#">
-        <span>삼성화재 SNS</span>
-        <img src="images/common/ico-common-fold-arr.svg" alt="삼성화재 SNS" />
-       </a>
-       <ul className="submenu">
-        <li>
-         <a href="#">Comming Soon</a>
-        </li>
-       </ul>
-      </li>
+     <ul
+      onMouseEnter={() => setShowAllSubmenus(true)}
+      onMouseLeave={() => setShowAllSubmenus(false)}
+     >
+      {footerMenus.map((menu) => (
+       <li key={menu.label}>
+        <a href="#">
+         <span>{menu.label}</span>
+         <img src="images/common/ico-common-fold-arr.svg" alt={menu.label} />
+        </a>
+        <ul
+         className="submenu"
+         style={{
+          display: showAllSubmenus ? "block" : "none",
+         }}
+        >
+         {menu.submenu.map((item) => (
+          <li key={item}>
+           <a href="#">{item}</a>
+          </li>
+         ))}
+        </ul>
+       </li>
+      ))}
      </ul>
     </div>
    </div>
@@ -203,4 +186,5 @@ const Footer = () => {
   </footer>
  );
 };
+
 export default Footer;
