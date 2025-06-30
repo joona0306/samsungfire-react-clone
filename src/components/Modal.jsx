@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import "../styles/modal.css";
 
 const modalMenus = [
@@ -180,13 +180,6 @@ const navMenus = [
 ];
 
 const Modal = ({ isOpen, onClose }) => {
- // 각 섹션별 ref 생성
- const sectionRefs = useRef(
-  navMenus.reduce((acc, nav) => {
-   acc[nav.id] = React.createRef();
-   return acc;
-  }, {})
- );
  // 현재 활성화된 탭 상태
  const [activeNav, setActiveNav] = useState("contract");
  // 아코디언 상태
@@ -257,12 +250,7 @@ const Modal = ({ isOpen, onClose }) => {
       </div>
       <div className="modal-menu-list">
        {modalMenus.map((menu, menuIdx) => (
-        <div
-         id={menu.id}
-         key={menu.id}
-         ref={sectionRefs[menu.id]}
-         style={{ paddingTop: menuIdx === 0 ? 0 : "4rem" }}
-        >
+        <div id={menu.id} key={menu.id} style={{ paddingTop: menuIdx === 0 ? 0 : "4rem" }}>
          <h4>{menu.title}</h4>
          <ul className="modal-submenu depth2">
           {menu.submenu.map((item, idx) => (
